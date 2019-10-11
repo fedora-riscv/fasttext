@@ -1,0 +1,20 @@
+diff -uNr fastText-0.9.1.pkgconfig/CMakeLists.txt fastText-0.9.1/CMakeLists.txt
+--- fastText-0.9.1.pkgconfig/CMakeLists.txt	2019-10-04 07:37:49.230927768 +0000
++++ fastText-0.9.1/CMakeLists.txt	2019-10-04 07:40:42.945102407 +0000
+@@ -64,11 +64,11 @@
+ target_link_libraries(fasttext-bin pthread fasttext-static)
+ set_target_properties(fasttext-bin PROPERTIES PUBLIC_HEADER "${HEADER_FILES}" OUTPUT_NAME fasttext)
+ install (TARGETS fasttext-shared
+-    LIBRARY DESTINATION lib)
++    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ install (TARGETS fasttext-static
+-    ARCHIVE DESTINATION lib)
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ install (TARGETS fasttext-static_pic
+-    ARCHIVE DESTINATION lib)
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ install (TARGETS fasttext-bin
+-    RUNTIME DESTINATION bin
+- PUBLIC_HEADER DESTINATION include/fasttext)
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++ PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/fasttext)
