@@ -1,3 +1,5 @@
+%define _epel   %{?epel:%{epel}}%{!?epel:0}
+
 Name:		fasttext
 Version:	0.9.1
 Release:	1%{?dist}
@@ -16,8 +18,13 @@ Patch2:		enable-install-lib64.patch
 Patch3:		respect-cmake-cxxflags.patch
 
 BuildRequires:	cmake
+%if %{_epel} == 7
+BuildRequires:	devtoolset-7-gcc
+BuildRequires:	devtoolset-7-gcc-c++
+%else
 BuildRequires:	gcc
 BuildRequires:	gcc-c++
+%endif
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description
@@ -48,6 +55,9 @@ This package contains header files to develop a software using fastText.
 %autosetup -p1 -n fastText-%{version}
 
 %build
+%if %{_epel} == 7
+. /opt/rh/devtoolset-7/enable
+%endif
 export CXXFLAGS="%build_cxxflags -fPIC"
 %cmake .
 %make_build V=1
