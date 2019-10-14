@@ -59,6 +59,8 @@ find %{buildroot}%{_libdir} -name '*.a' -delete
 %files 
 %{_bindir}/fasttext
 
+%ldconfig_scriptlets libs
+
 %files libs
 %license LICENSE
 %doc CODE_OF_CONDUCT.md CONTRIBUTING.md README.md
