@@ -1,8 +1,8 @@
 %define _epel   %{?epel:%{epel}}%{!?epel:0}
 
 Name:		fasttext
-Version:	0.9.1
-Release:	4%{?dist}
+Version:	0.9.2
+Release:	1%{?dist}
 Summary:	Efficient learning of word representations and sentence classification
 
 License:	MIT
@@ -83,6 +83,9 @@ find %{buildroot}%{_libdir} -name '*.a' -delete
 %{_libdir}/pkgconfig/fasttext.pc
 
 %changelog
+* Thu Oct 01 2020 Kentaro Hayashi <kenhys@gmail.com> - 0.9.2-1
+- New upstream release
+
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.1-4
 - Second attempt - Rebuilt for
   https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
