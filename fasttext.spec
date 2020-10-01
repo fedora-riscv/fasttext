@@ -1,21 +1,17 @@
 %define _epel   %{?epel:%{epel}}%{!?epel:0}
 
 Name:		fasttext
-Version:	0.9.1
+Version:	0.9.2
 Release:	1%{?dist}
 Summary:	Efficient learning of word representations and sentence classification
 
 License:	MIT
 URL:		https://github.com/facebookresearch/fastText
 Source0:	https://github.com/facebookresearch/fastText/archive/v%{version}/%{name}-%{version}.tar.gz
-# Enable soversion explicitly to avoid unintentional soname bump
-Patch0:		enable-soversion.patch
-# Enable pkg-config feature for users of libfasttext-devel package
-Patch1:		enable-pkg-config.patch
 # Enable to install %%{_libdir} instead of hardcoded lib directory
-Patch2:		enable-install-lib64.patch
+Patch0:		enable-install-lib64.patch
 # Respect CMake CXXFLAGS set by %%cmake (Needed for hardening with -fPIC)
-Patch3:		respect-cmake-cxxflags.patch
+Patch1:		respect-cmake-cxxflags.patch
 
 BuildRequires:	cmake
 %if %{_epel} == 7
@@ -60,10 +56,10 @@ This package contains header files to develop a software using fastText.
 %endif
 export CXXFLAGS="%build_cxxflags -fPIC"
 %cmake .
-%make_build V=1
+V=1 %cmake_build
 
 %install
-%make_install
+%cmake_install
 find %{buildroot}%{_libdir} -name '*.a' -delete
 
 %files 
@@ -83,5 +79,18 @@ find %{buildroot}%{_libdir} -name '*.a' -delete
 %{_libdir}/pkgconfig/fasttext.pc
 
 %changelog
+* Thu Oct 01 2020 Kentaro Hayashi <kenhys@gmail.com> - 0.9.2-1
+- New upstream release
+
+* Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.1-4
+- Second attempt - Rebuilt for
+  https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
+* Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
+* Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Tue Oct 1 2019 Kentaro Hayashi <hayashi@clear-code.com> - 0.9.1-1
 - initial packaging
