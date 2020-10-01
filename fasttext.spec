@@ -56,10 +56,10 @@ This package contains header files to develop a software using fastText.
 %endif
 export CXXFLAGS="%build_cxxflags -fPIC"
 %cmake .
-%make_build V=1
+V=1 %cmake_build
 
 %install
-%make_install
+%cmake_install
 find %{buildroot}%{_libdir} -name '*.a' -delete
 
 %files 
