@@ -1,7 +1,6 @@
-diff -uNr fastText-0.9.1.pkgconfig/CMakeLists.txt fastText-0.9.1/CMakeLists.txt
---- fastText-0.9.1.pkgconfig/CMakeLists.txt	2019-10-04 07:37:49.230927768 +0000
-+++ fastText-0.9.1/CMakeLists.txt	2019-10-04 07:40:42.945102407 +0000
-@@ -64,11 +64,11 @@
+--- fastText-0.9.2.orig/CMakeLists.txt	2020-04-28 18:40:33.000000000 +0900
++++ fastText-0.9.2/CMakeLists.txt	2020-10-01 10:00:54.894264791 +0900
+@@ -68,11 +68,11 @@
  target_link_libraries(fasttext-bin pthread fasttext-static)
  set_target_properties(fasttext-bin PROPERTIES PUBLIC_HEADER "${HEADER_FILES}" OUTPUT_NAME fasttext)
  install (TARGETS fasttext-shared
