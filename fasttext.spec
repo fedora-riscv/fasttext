@@ -8,14 +8,10 @@ Summary:	Efficient learning of word representations and sentence classification
 License:	MIT
 URL:		https://github.com/facebookresearch/fastText
 Source0:	https://github.com/facebookresearch/fastText/archive/v%{version}/%{name}-%{version}.tar.gz
-# Enable soversion explicitly to avoid unintentional soname bump
-Patch0:		enable-soversion.patch
-# Enable pkg-config feature for users of libfasttext-devel package
-Patch1:		enable-pkg-config.patch
 # Enable to install %%{_libdir} instead of hardcoded lib directory
-Patch2:		enable-install-lib64.patch
+Patch0:		enable-install-lib64.patch
 # Respect CMake CXXFLAGS set by %%cmake (Needed for hardening with -fPIC)
-Patch3:		respect-cmake-cxxflags.patch
+Patch1:		respect-cmake-cxxflags.patch
 
 BuildRequires:	cmake
 %if %{_epel} == 7
