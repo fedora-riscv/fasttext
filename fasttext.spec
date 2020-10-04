@@ -13,11 +13,12 @@ Patch0:		enable-install-lib64.patch
 # Respect CMake CXXFLAGS set by %%cmake (Needed for hardening with -fPIC)
 Patch1:		respect-cmake-cxxflags.patch
 
-BuildRequires:	cmake
 %if %{_epel} == 7
+BuildRequires:	cmake3
 BuildRequires:	devtoolset-7-gcc
 BuildRequires:	devtoolset-7-gcc-c++
 %else
+BuildRequires:	cmake
 BuildRequires:	gcc
 BuildRequires:	gcc-c++
 %endif
@@ -55,12 +56,21 @@ This package contains header files to develop a software using fastText.
 . /opt/rh/devtoolset-7/enable
 %endif
 export CXXFLAGS="%build_cxxflags -fPIC"
+%if %{_epel} == 7
+%cmake3 .
+V=1 %cmake3_build
+%else
 %cmake .
 V=1 %cmake_build
+%endif
 
 %install
+%if %{_epel} == 7
+%cmake3_install
+%else
 %cmake_install
-find %{buildroot}%{_libdir} -name '*.a' -delete
+%endif
+find %{buildroot} -name '*.a' -delete
 
 %files 
 %{_bindir}/fasttext
