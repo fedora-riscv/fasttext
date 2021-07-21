@@ -2,7 +2,7 @@
 
 Name:		fasttext
 Version:	0.9.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Efficient learning of word representations and sentence classification
 
 License:	MIT
@@ -89,6 +89,9 @@ find %{buildroot} -name '*.a' -delete
 %{_libdir}/pkgconfig/fasttext.pc
 
 %changelog
+* Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
