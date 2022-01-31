@@ -1,3 +1,0 @@
-# fasttext
-
-The fasttext package
