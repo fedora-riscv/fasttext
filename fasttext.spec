@@ -2,7 +2,7 @@
 
 Name:		fasttext
 Version:	0.9.2
-Release:	6%{?dist}
+Release:	6.rv64%{?dist}
 Summary:	Efficient learning of word representations and sentence classification
 
 License:	MIT
@@ -12,6 +12,8 @@ Source0:	https://github.com/facebookresearch/fastText/archive/v%{version}/%{name
 Patch0:		enable-install-lib64.patch
 # Respect CMake CXXFLAGS set by %%cmake (Needed for hardening with -fPIC)
 Patch1:		respect-cmake-cxxflags.patch
+
+Patch100:   fix-build-on-riscv64.patch
 
 %if %{_epel} == 7
 BuildRequires:	cmake3
@@ -89,6 +91,9 @@ find %{buildroot} -name '*.a' -delete
 %{_libdir}/pkgconfig/fasttext.pc
 
 %changelog
+* Wed Aug 23 2023 Liu Yang <Yang.Liu.sn@gmail.com> - 0.9.2-6.rv64
+- Fix build on riscv64.
+
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.2-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
